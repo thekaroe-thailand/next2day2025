@@ -18,6 +18,7 @@ model Book {
   name       String
   price      Int
   orderItems OrderItem[]
+  barcode    String?
 }
 
 model User {

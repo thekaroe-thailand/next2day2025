@@ -14,14 +14,15 @@ const { UserController } = require('./controllers/UserController');
 // user 
 //
 app.post('/api/user/signin', UserController.signin);
+app.get('/api/user/info', UserController.info);
 
 //
 // book 
 //
-app.get('/api/api/book', BookController.list);
-app.post('/api/api/book', BookController.create);
-app.put('/book/:id', BookController.update);
-app.delete('/book/:id', BookController.delete);
+app.get('/api/book', BookController.list);
+app.post('/api/book', BookController.create);
+app.put('/api/book/:id', BookController.update);
+app.delete('/api/book/:id', BookController.delete);
 
 
 app.get('/', (req, res) => {
