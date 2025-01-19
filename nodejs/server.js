@@ -23,6 +23,8 @@ app.post('/api/sale/save', BookController.save); // สร้างรายก�
 app.get('/api/sale/list', BookController.orderList); // แสดงรายการสั่งซื้อ
 app.delete('/api/sale/delete/:id', BookController.deleteOrderItem); // ลบรายการออกจากรายการสั่งซื้อ
 app.put('/api/sale/confirmOrder', BookController.confirmOrder); // ยืนยันการสั่งซื้อ
+app.get('/api/sale/countOrder', BookController.countOrder); // นับจำนวนรายการสั่งซื้อ
+app.get('/api/sale/totalSale', BookController.totalSale); // รวมยอดขายทั้งหมด
 
 app.get('/api/book', BookController.list);
 app.post('/api/book', BookController.create);

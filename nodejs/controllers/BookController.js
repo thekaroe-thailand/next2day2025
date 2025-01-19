@@ -84,6 +84,26 @@ module.exports = {
                 data: { status: 'paid' }
             });
             res.send({ message: 'success' });
+        },
+        // บิลขาย
+        countOrder: async (req, res) => {
+            const count = await prisma.order.count({
+                where: { status: 'paid' }
+            });
+            res.send({ count });
+        },
+        // รวมผลยอดขายทั้งหมด
+        totalSale: async (req, res) => {
+            // arrgregate = SUM,MAX,MIN,AVG
+            const total = await prisma.orderItem.aggregate({
+                _sum: { price: true },
+                where: {
+                    order: {
+                        status: 'paid'
+                    }
+                }
+            });
+            res.send({ total: total._sum.price });
         }
     }
 }
