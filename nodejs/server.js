@@ -13,12 +13,17 @@ const { UserController } = require('./controllers/UserController');
 //
 // user 
 //
-app.post('/api/user/signin', UserController.signin);
-app.get('/api/user/info', UserController.info);
+app.post('/api/user/signin', UserController.signin); // เข้าสู่ระบบ
+app.get('/api/user/info', UserController.info); // ดึงข้อมูลผู้ใช้
 
 //
 // book 
 //
+app.post('/api/sale/save', BookController.save); // สร้างรายการสั่งซื้อ
+app.get('/api/sale/list', BookController.orderList); // แสดงรายการสั่งซื้อ
+app.delete('/api/sale/delete/:id', BookController.deleteOrderItem); // ลบรายการออกจากรายการสั่งซื้อ
+app.put('/api/sale/confirmOrder', BookController.confirmOrder); // ยืนยันการสั่งซื้อ
+
 app.get('/api/book', BookController.list);
 app.post('/api/book', BookController.create);
 app.put('/api/book/:id', BookController.update);
