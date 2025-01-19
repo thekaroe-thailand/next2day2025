@@ -14,7 +14,36 @@ datasource db {
 }
 
 model Book {
-  id    Int    @id @default(autoincrement())
-  name  String
-  price Int
+  id         Int         @id @default(autoincrement())
+  name       String
+  price      Int
+  orderItems OrderItem[]
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  name     String
+  username String  @unique
+  password String
+  level    String  @default("user") // admin, user
+  status   String  @default("active") // active, inactive
+  remark   String?
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  createdAt  DateTime    @default(now())
+  status     String      @default("pending") // pending, completed, cancelled
+  orderItems OrderItem[]
+  remark     String?
+}
+
+model OrderItem {
+  id       Int   @id @default(autoincrement())
+  orderId  Int
+  order    Order @relation(fields: [orderId], references: [id])
+  bookId   Int
+  book     Book  @relation(fields: [bookId], references: [id])
+  quantity Int
+  price    Int
 }

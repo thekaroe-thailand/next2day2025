@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 const { BookController } = require('./controllers/BookController');
 const { UserController } = require('./controllers/UserController');
@@ -11,13 +13,13 @@ const { UserController } = require('./controllers/UserController');
 //
 // user 
 //
-app.get('/user/login', UserController.login);
+app.post('/api/user/signin', UserController.signin);
 
 //
 // book 
 //
-app.get('/book', BookController.list);
-app.post('/book', BookController.create);
+app.get('/api/api/book', BookController.list);
+app.post('/api/api/book', BookController.create);
 app.put('/book/:id', BookController.update);
 app.delete('/book/:id', BookController.delete);
 
